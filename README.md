@@ -1,1 +1,1 @@
-# ricobs..github.io-resume
+# ricobs.github.io
