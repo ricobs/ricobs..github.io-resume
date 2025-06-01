@@ -50,15 +50,13 @@
         }
 
         /* Styles for the image shuffler within the References tab */
-        #references-image-shuffler {
+        .image-shuffler {
             position: relative;
             width: 100%;
             min-height: 250px; /* Adjust as needed for image height */
             overflow: hidden;
             margin-top: 1.5rem; /* Add some space above the shuffler */
-            background-color: #f0f0f0; /* Light background for the shuffler area */
-            border-radius: 0.5rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            /* Removed background-color, border-radius, and box-shadow for the container */
         }
         .shuffler-item-ref {
             position: absolute;
@@ -67,25 +65,28 @@
             width: 100%;
             height: 100%;
             opacity: 0;
-            transition: opacity 1s ease-in-out;
+            transition: opacity 1s ease-in-out; /* Smooth fade transition */
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #fff;
+            /* Removed background-color for individual items */
         }
         .shuffler-item-ref.active {
             opacity: 1;
-            z-index: 1;
+            z-index: 1; /* Bring active item to front */
         }
         .shuffler-item-ref.hidden-element {
-            display: none;
+            /* This class is now primarily for initial state or if explicitly needed for display:none,
+               but for smooth transitions, opacity handles visibility.
+               Keeping it here for potential future use or if JS relies on it for non-active state. */
+            /* display: none; */ /* Removed to allow smooth transitions without gaps */
         }
         .shuffler-item-ref img {
             max-width: 90%; /* Smaller max-width to give some padding */
             max-height: 90%; /* Smaller max-height */
             object-fit: contain;
             border-radius: 0.25rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Kept subtle shadow for images themselves */
         }
 
 
@@ -136,7 +137,7 @@
                 box-shadow: none !important;
             }
             /* Make reference shuffler images visible for print */
-            #references-image-shuffler {
+            .image-shuffler {
                 position: static;
                 height: auto;
                 min-height: auto;
@@ -292,21 +293,25 @@
         </div>
 
         <div id="references-content" class="tab-content">
-            <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-gray-300 inline-block">Words from Collaborators</h2>
+            <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-gray-300 inline-block">References</h2>
             <section class="mt-8">
-                <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-gray-300 inline-block">Words from Collaborators</h3>
-                <div id="references-image-shuffler">
+                <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-gray-300 inline-block">Words from Clients</h3>
+                <div id="references-image-shuffler" class="image-shuffler">
                     <div class="shuffler-item-ref active">
-                        <img src="https://github.com/ricobs/ricobs.github.io/blob/main/reference8.png?raw=true" alt="Professional Reference Image 1">
+                        <img src="https://github.com/ricobs/ricobs.github.io/blob/main/reference3.png?raw=true" alt="Professional Reference Image 1">
                     </div>
                     <div class="shuffler-item-ref hidden-element">
-                        <img src="https://github.com/ricobs/ricobs.github.io/blob/main/reference3.png?raw=true" alt="Professional Reference Image 2">
+                        <img src="https://github.com/ricobs/ricobs.github.io/blob/main/reference5.png?raw=true" alt="Professional Reference Image 2">
                     </div>
                     <div class="shuffler-item-ref hidden-element">
-                        <img src="https://github.com/ricobs/ricobs.github.io/blob/main/reference5.png?raw=true" alt="Professional Reference Image 3">
+                        <img src="https://github.com/ricobs/ricobs.github.io/blob/main/reference6.png?raw=true" alt="Professional Reference Image 3">
+                    <div class="shuffler-item-ref hidden-element">
+                        <img src="https://github.com/ricobs/ricobs.github.io/blob/main/reference7.png?raw=true">
+                    <div class="shuffler-item-ref hidden-element">
+                        <img src="https://github.com/ricobs/ricobs.github.io/blob/main/reference8.png?raw=true" alt="Professional Reference Image 3">                      
                     </div>
                 </div>
-                <p class="text-sm text-gray-600 mt-2 text-center"></p>
+                <p class="text-sm text-gray-600 mt-2 text-center">Images will rotate automatically. Please replace these placeholders with actual reference visuals.</p>
             </section>
             <p class="text-lg text-gray-800 mb-4 mt-8">References are available upon request.</p>
             <div class="p-4 bg-gray-100 rounded-md">
@@ -316,10 +321,25 @@
 
         <div id="certifications-content" class="tab-content">
             <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-gray-300 inline-block">Certifications & Education</h2>
-            <ul class="list-disc list-inside text-lg text-gray-800 space-y-2">
-                <li>Data Science & Machine Learning Graduate - BloomTech (2022)</li>
-                <li>Camtasia Studio Explorer Certification</li>
-                <li>HubSpot Reporting Certified</li>
+            <section class="mt-8">
+                <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-gray-300 inline-block">Certificates & Awards</h3>
+                <div id="certifications-image-shuffler" class="image-shuffler">
+                    <div class="shuffler-item-ref active">
+                        <img src="https://github.com/ricobs/ricobs.github.io/blob/main/reference2.png?raw=true" alt="Certification Image 1">
+                    </div>
+                    <div class="shuffler-item-ref hidden-element">
+                        <img src="https://github.com/ricobs/ricobs.github.io/blob/main/reference1.png?raw=true" alt="Certification Image 2">
+                    </div>
+                    <div class="shuffler-item-ref hidden-element">
+                        <img src="https://github.com/ricobs/ricobs.github.io/blob/main/reference4.png?raw=true" alt="Certification Image 3">
+                    </div>
+                </div>
+                <p class="text-sm text-gray-600 mt-2 text-center">Images will rotate automatically. Please replace these placeholders with actual certification visuals.</p>
+            </section>
+            <ul class="list-disc list-inside text-lg text-gray-800 space-y-2 mt-8">
+                <li>**Data Science & Machine Learning Graduate** - Bloom Tech (2022)</li>
+                <li>[Add other relevant certifications here, e.g., "Google Data Analytics Professional Certificate"]</li>
+                <li>[Add other relevant certifications here, e.g., "Microsoft Certified: Data Analyst Associate"]</li>
             </ul>
             <p class="text-lg text-gray-800 mt-4">This section will be updated with more certifications as they are obtained.</p>
         </div>
@@ -331,6 +351,7 @@
 
     <script>
         let referencesShufflerInterval; // Variable to hold the interval ID for references images
+        let certificationsShufflerInterval; // Variable to hold the interval ID for certifications images
 
         document.addEventListener('DOMContentLoaded', () => {
             const tabButtons = document.querySelectorAll('.tab-button');
@@ -354,60 +375,64 @@
                     activeContent.classList.add('active');
                 }
 
-                // Manage the references image shuffler (now in 'References' tab)
-                if (tabId === 'references-content') { // Check for 'references-content' tab
-                    startReferencesShuffler();
+                // Manage the references image shuffler
+                if (tabId === 'references-content') {
+                    startShuffler('references-image-shuffler', 'referencesShufflerInterval');
                 } else {
-                    stopReferencesShuffler();
+                    stopShuffler('referencesShufflerInterval');
+                }
+
+                // Manage the certifications image shuffler
+                if (tabId === 'certifications-content') {
+                    startShuffler('certifications-image-shuffler', 'certificationsShufflerInterval');
+                } else {
+                    stopShuffler('certificationsShufflerInterval');
                 }
             }
 
-            // Function to start the references image shuffler
-            function startReferencesShuffler() {
+            // Generic function to start an image shuffler
+            function startShuffler(shufflerId, intervalVarName) {
                 // Clear any existing interval to prevent multiple shufflers running
-                stopReferencesShuffler();
+                stopShuffler(intervalVarName);
 
-                const refShufflerItems = document.querySelectorAll('#references-image-shuffler .shuffler-item-ref');
-                if (refShufflerItems.length === 0) return; // Exit if no images
+                const shufflerItems = document.querySelectorAll(`#${shufflerId} .shuffler-item-ref`);
+                if (shufflerItems.length === 0) return; // Exit if no images
 
-                let currentRefIndex = 0;
+                let currentIndex = 0;
 
                 // Ensure only the first image is active initially when starting
-                refShufflerItems.forEach((item, index) => {
+                shufflerItems.forEach((item, index) => {
                     if (index === 0) {
                         item.classList.add('active');
-                        item.classList.remove('hidden-element');
+                        item.style.zIndex = 1; // Ensure active is on top
                     } else {
                         item.classList.remove('active');
-                        item.classList.add('hidden-element');
+                        item.style.zIndex = 0; // Ensure inactive is behind
                     }
                 });
 
-                function showNextRefItem() {
+                function showNextItem() {
                     // Hide current item
-                    refShufflerItems[currentRefIndex].classList.remove('active');
-                    setTimeout(() => {
-                        refShufflerItems[currentRefIndex].classList.add('hidden-element');
-                    }, 1000); // Matches CSS transition duration
+                    shufflerItems[currentIndex].classList.remove('active');
+                    shufflerItems[currentIndex].style.zIndex = 0; // Move current to back
 
                     // Move to next item
-                    currentRefIndex = (currentRefIndex + 1) % refShufflerItems.length;
+                    currentIndex = (currentIndex + 1) % shufflerItems.length;
 
                     // Show next item
-                    refShufflerItems[currentRefIndex].classList.remove('hidden-element');
-                    setTimeout(() => {
-                        refShufflerItems[currentRefIndex].classList.add('active');
-                    }, 50); // Small delay to re-trigger transition
+                    shufflerItems[currentIndex].classList.add('active');
+                    shufflerItems[currentIndex].style.zIndex = 1; // Bring next to front
                 }
 
-                referencesShufflerInterval = setInterval(showNextRefItem, 3000); // Shuffles every 3 seconds
+                // Assign the interval ID to the correct global variable
+                window[intervalVarName] = setInterval(showNextItem, 3000); // Shuffles every 3 seconds
             }
 
-            // Function to stop the references image shuffler
-            function stopReferencesShuffler() {
-                if (referencesShufflerInterval) {
-                    clearInterval(referencesShufflerInterval);
-                    referencesShufflerInterval = null;
+            // Generic function to stop an image shuffler
+            function stopShuffler(intervalVarName) {
+                if (window[intervalVarName]) {
+                    clearInterval(window[intervalVarName]);
+                    window[intervalVarName] = null;
                 }
             }
 
