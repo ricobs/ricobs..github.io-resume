@@ -293,159 +293,41 @@
         </div>
 
         <div id="references-content" class="tab-content">
+            <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-gray-300 inline-block">References</h2>
+            <section class="mt-8">
                 <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-gray-300 inline-block">Words from Clients</h3>
                 <div id="references-image-shuffler" class="image-shuffler">
                     <div class="shuffler-item-ref active">
                         <img src="https://github.com/ricobs/ricobs.github.io/blob/main/reference3.png?raw=true" alt="Professional Reference Image 1">
                     </div>
-                    <div class="shuffler-item-ref hidden-element">
+                    <div class="shuffler-item-ref">
                         <img src="https://github.com/ricobs/ricobs.github.io/blob/main/reference5.png?raw=true" alt="Professional Reference Image 2">
                     </div>
-                    <div class="shuffler-item-ref hidden-element">
+                    <div class="shuffler-item-ref">
                         <img src="https://github.com/ricobs/ricobs.github.io/blob/main/reference6.png?raw=true" alt="Professional Reference Image 3">
-                    <div class="shuffler-item-ref hidden-element">
-                        <img src="https://github.com/ricobs/ricobs.github.io/blob/main/reference7.png?raw=true" alt="Professional Reference Image 4"> 
-                    <div class="shuffler-item-ref hidden-element">
+                    </div>
+                    <div class="shuffler-item-ref">
+                        <img src="https://github.com/ricobs/ricobs.github.io/blob/main/reference7.png?raw=true" alt="Professional Reference Image 4">
+                    </div>
+                    <div class="shuffler-item-ref">
                         <img src="https://github.com/ricobs/ricobs.github.io/blob/main/reference8.png?raw=true" alt="Professional Reference Image 5">
+                    </div>
                 </div>
+                <p class="text-sm text-gray-600 mt-2 text-center">Images will rotate automatically. Please replace these placeholders with actual reference visuals.</p>
             </section>
             <p class="text-lg text-gray-800 mb-4 mt-8">References are available upon request.</p>
+            <div class="p-4 bg-gray-100 rounded-md">
+                <p class="text-md text-gray-700">Please contact me directly to request professional references.</p>
             </div>
         </div>
 
         <div id="certifications-content" class="tab-content">
             <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-gray-300 inline-block">Certifications & Education</h2>
             <section class="mt-8">
+                <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-gray-300 inline-block">Certificates & Awards</h3>
                 <div id="certifications-image-shuffler" class="image-shuffler">
                     <div class="shuffler-item-ref active">
                         <img src="https://github.com/ricobs/ricobs.github.io/blob/main/reference2.png?raw=true" alt="Certification Image 1">
                     </div>
-                    <div class="shuffler-item-ref hidden-element">
-                        <img src="https://github.com/ricobs/ricobs.github.io/blob/main/reference1.png?raw=true" alt="Certification Image 2">
-                    </div>
-                    <div class="shuffler-item-ref hidden-element">
-                        <img src="https://github.com/ricobs/ricobs.github.io/blob/main/reference4.png?raw=true" alt="Certification Image 3">
-                    <div class="shuffler-item-ref hidden-element">
-                        <img src="https://github.com/ricobs/ricobs.github.io/blob/main/reference4.png?raw=true" alt="Certification Image 4">
-                    <div class="shuffler-item-ref hidden-element">
-                        <img src="https://github.com/ricobs/ricobs.github.io/blob/main/reference4.png?raw=true" alt="Certification Image 5">
-                    </div>
-                </div>
-            </section>
-            <ul class="list-disc list-inside text-lg text-gray-800 space-y-2 mt-8">
-                <li>Data Science & Machine Learning Graduate- BloomTech (2022)</li>
-                <li>Hubspot Reporting Certified</li>
-                <li>Camtasia Explorer Certified</li>
-            </ul>
-        </div>
-    </div>
-
-    <footer class="text-center mt-8 pt-6 border-t-2 border-gray-300 text-gray-600 text-sm">
-        <p>&copy; <span id="current-year"></span> Rico Sanchez. All rights reserved.</p>
-    </footer>
-
-    <script>
-        let referencesShufflerInterval; // Variable to hold the interval ID for references images
-        let certificationsShufflerInterval; // Variable to hold the interval ID for certifications images
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const tabButtons = document.querySelectorAll('.tab-button');
-            const tabContents = document.querySelectorAll('.tab-content');
-
-            // Function to show a specific tab
-            function showTab(tabId) {
-                // Deactivate all tab buttons and hide all tab contents
-                tabButtons.forEach(button => button.classList.remove('active'));
-                tabContents.forEach(content => content.classList.remove('active'));
-
-                // Activate the clicked tab button
-                const activeButton = document.querySelector(`[data-tab-target="${tabId}"]`);
-                if (activeButton) {
-                    activeButton.classList.add('active');
-                }
-
-                // Show the corresponding tab content
-                const activeContent = document.getElementById(tabId);
-                if (activeContent) {
-                    activeContent.classList.add('active');
-                }
-
-                // Manage the references image shuffler
-                if (tabId === 'references-content') {
-                    startShuffler('references-image-shuffler', 'referencesShufflerInterval');
-                } else {
-                    stopShuffler('referencesShufflerInterval');
-                }
-
-                // Manage the certifications image shuffler
-                if (tabId === 'certifications-content') {
-                    startShuffler('certifications-image-shuffler', 'certificationsShufflerInterval');
-                } else {
-                    stopShuffler('certificationsShufflerInterval');
-                }
-            }
-
-            // Generic function to start an image shuffler
-            function startShuffler(shufflerId, intervalVarName) {
-                // Clear any existing interval to prevent multiple shufflers running
-                stopShuffler(intervalVarName);
-
-                const shufflerItems = document.querySelectorAll(`#${shufflerId} .shuffler-item-ref`);
-                if (shufflerItems.length === 0) return; // Exit if no images
-
-                let currentIndex = 0;
-
-                // Ensure only the first image is active initially when starting
-                shufflerItems.forEach((item, index) => {
-                    if (index === 0) {
-                        item.classList.add('active');
-                        item.style.zIndex = 1; // Ensure active is on top
-                    } else {
-                        item.classList.remove('active');
-                        item.style.zIndex = 0; // Ensure inactive is behind
-                    }
-                });
-
-                function showNextItem() {
-                    // Hide current item
-                    shufflerItems[currentIndex].classList.remove('active');
-                    shufflerItems[currentIndex].style.zIndex = 0; // Move current to back
-
-                    // Move to next item
-                    currentIndex = (currentIndex + 1) % shufflerItems.length;
-
-                    // Show next item
-                    shufflerItems[currentIndex].classList.add('active');
-                    shufflerItems[currentIndex].style.zIndex = 1; // Bring next to front
-                }
-
-                // Assign the interval ID to the correct global variable
-                window[intervalVarName] = setInterval(showNextItem, 3000); // Shuffles every 3 seconds
-            }
-
-            // Generic function to stop an image shuffler
-            function stopShuffler(intervalVarName) {
-                if (window[intervalVarName]) {
-                    clearInterval(window[intervalVarName]);
-                    window[intervalVarName] = null;
-                }
-            }
-
-            // Add click event listeners to all tab buttons
-            tabButtons.forEach(button => {
-                button.addEventListener('click', (event) => {
-                    event.preventDefault(); // Prevent default anchor link behavior
-                    const tabId = button.dataset.tabTarget;
-                    showTab(tabId);
-                });
-            });
-
-            // Set the initial active tab (About)
-            showTab('contact-content'); // 'contact-content' is now the 'About' section
-
-            // JavaScript to automatically update the copyright year
-            document.getElementById('current-year').textContent = new Date().getFullYear();
-        });
-    </script>
-</body>
-</html>
+                    <div class="shuffler-item-ref">
+                        <img 
