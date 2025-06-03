@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rico Sanchez - Resume</title>
+    <title>ricobs.github.io</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -53,7 +53,7 @@
         .image-shuffler {
             position: relative;
             width: 100%;
-            min-height: 250px; /* Adjust as needed for image height */
+            min-height: 468.75px; /* Adjusted from 312.5px by 50% */
             overflow: hidden;
             margin-top: 1.5rem; /* Add some space above the shuffler */
             /* Removed background-color, border-radius, and box-shadow for the container */
@@ -157,6 +157,56 @@
                 box-shadow: none;
             }
         }
+
+        /* Modal styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            max-width: 90%;
+            width: 400px;
+            text-align: center;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease-in-out;
+        }
+        .modal-overlay.show .modal-content {
+            transform: translateY(0);
+        }
+        .modal-close-button {
+            @apply absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-2xl font-bold;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .service-item {
+            @apply cursor-pointer p-3 rounded-md transition-colors duration-200;
+            background-color: #f9fafb; /* Light gray background for service items */
+            border: 1px solid #e5e7eb; /* Light border */
+        }
+        .service-item:hover {
+            @apply bg-blue-50; /* Light blue on hover */
+            border-color: #bfdbfe; /* Lighter blue border on hover */
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 leading-relaxed p-4 sm:p-6 md:p-8 lg:p-10 max-w-4xl mx-auto rounded-lg shadow-lg my-8">
@@ -164,7 +214,7 @@
     <nav class="mb-6 no-print">
         <ul class="flex flex-wrap justify-center -mb-px">
             <li class="mr-2">
-                <a id="about-tab" class="tab-button active" href="#contact-content" data-tab-target="contact-content">About</a>
+                <a id="about-tab" class="tab-button active" href="#contact-content" data-tab-target="contact-content">Main</a>
             </li>
             <li class="mr-2 flex items-center">
                 <span class="text-gray-400 text-lg mx-1">|</span>
@@ -182,22 +232,35 @@
     </nav>
 
     <header class="text-center mb-8 pb-6 border-b-2 border-blue-600">
-        <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-2 leading-tight">RicoBS Quality Data Solutions</h1>
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-2 leading-tight">ricobs.github.io - Quality Data Solutions</h1>
     </header>
 
     <div id="tab-content-area">
         <div id="contact-content" class="tab-content active">
-            <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-gray-300 inline-block">About</h2>
+            <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-gray-300 inline-block">Our Services</h2>
+            <p class="text-lg text-gray-800 mb-6">Click on any service below to inquire about it:</p>
+            <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 text-lg">
+                <li class="service-item" data-service="Data Analysis & Reporting">Data Analysis & Reporting</li>
+                <li class="service-item" data-service="SQL Database Optimization">SQL Database Optimization</li>
+                <li class="service-item" data-service="CRM Data Management">CRM Data Management</li>
+                <li class="service-item" data-service="Business Process Automation">Business Process Automation</li>
+                <li class="service-item" data-service="Market Research & Insights">Market Research & Insights</li>
+                <li class="service-item" data-service="Sales Operations Strategy">Sales Operations Strategy</li>
+                <li class="service-item" data-service="Dashboard Development">Dashboard Development</li>
+                <li class="service-item" data-service="Data Governance Implementation">Data Governance Implementation</li>
+                <li class="service-item" data-service="Customer Segmentation">Customer Segmentation</li>
+                <li class="service-item" data-service="Stakeholder Management & Communication">Stakeholder Management & Communication</li>
+            </ul>
+
+            <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mt-8 mb-4 pb-2 border-b-2 border-gray-300 inline-block">About Us</h2>
             <div class="text-lg text-gray-800 space-y-4">
                 <p class="font-bold text-xl sm:text-2xl text-gray-800 mb-4">
-                    As a Business Analyst and Data Analyst, Rico Sanchez brings a robust skill set in data management, process optimization, and strategic decision-making. With a proven track record in enhancing data accuracy, streamlining workflows, and leveraging insights for business growth, Rico is passionate about transforming complex data into actionable strategies. His experience spans analytic work in global asset management and tech education, complemented by a strong background in hospitality, emphasizing customer satisfaction and operational efficiency.
+                    At ricobs.github.io, we specialize in providing top-tier data solutions, leveraging robust skills in data management, process optimization, and strategic decision-making. Our proven track record includes enhancing data accuracy, streamlining workflows, and transforming complex data into actionable strategies for business growth. We combine analytic expertise from global asset management and tech education with a strong foundation in operational efficiency, ensuring comprehensive and effective solutions for our clients.
                 </p>
                 <p>
-                    Rico is a graduate of Bloom Tech in Data Science & Machine Learning, continuously seeking to apply cutting-edge analytical techniques to solve real-world business challenges.
+                    Our team is dedicated to applying cutting-edge analytical techniques to solve real-world business challenges, ensuring your data works for you.
                 </p>
-                <p><strong>Email:</strong> <a href="mailto:rodricobs@gmail.com" class="text-blue-600 hover:text-blue-800">rodricobs@gmail.com</a></p>
-                <p><strong>GitHub:</strong> <a href="https://github.com/ricobs" target="_blank" class="text-blue-600 hover:text-blue-800">github.com/ricobs</a></p>
-            </div>
+                </div>
         </div>
 
         <div id="resume-content" class="tab-content">
@@ -293,9 +356,8 @@
         </div>
 
         <div id="references-content" class="tab-content">
-            <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-gray-300 inline-block"></h2>
+            <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-gray-300 inline-block">References</h2>
             <section class="mt-8">
-                <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-gray-300 inline-block">Words from Clients</h3>
                 <div id="references-image-shuffler" class="image-shuffler">
                     <div class="shuffler-item-ref active">
                         <img src="https://github.com/ricobs/ricobs.github.io/blob/main/reference3.png?raw=true" alt="Professional Reference Image 1">
@@ -313,18 +375,13 @@
                         <img src="https://github.com/ricobs/ricobs.github.io/blob/main/reference8.png?raw=true" alt="Professional Reference Image 5">
                     </div>
                 </div>
-                <p class="text-sm text-gray-600 mt-2 text-center"></p>
             </section>
             <p class="text-lg text-gray-800 mb-4 mt-8">References are available upon request.</p>
-            <div class="p-4 bg-gray-100 rounded-md">
-                <p class="text-md text-gray-700"></p>
-            </div>
         </div>
 
         <div id="certifications-content" class="tab-content">
             <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-gray-300 inline-block">Certifications & Education</h2>
             <section class="mt-8">
-                <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-gray-300 inline-block"></h3>
                 <div id="certifications-image-shuffler" class="image-shuffler">
                     <div class="shuffler-item-ref active">
                         <img src="https://github.com/ricobs/ricobs.github.io/blob/main/reference2.png?raw=true" alt="Certification Image 1">
@@ -336,19 +393,26 @@
                         <img src="https://github.com/ricobs/ricobs.github.io/blob/main/reference4.png?raw=true" alt="Certification Image 3">
                     </div>
                 </div>
-                <p class="text-sm text-gray-600 mt-2 text-center"></p>
             </section>
             <ul class="list-disc list-inside text-lg text-gray-800 space-y-2 mt-8">
                 <li>Data Science & Machine Learning Graduate- BloomTech (2022)</li>
                 <li>Hubspot Reporting Certified</li>
                 <li>Camtasia Explorer Certified</li>
             </ul>
-            <p class="text-lg text-gray-800 mt-4"></p>
+            </div>
+    </div>
+
+    <div id="contact-modal-overlay" class="modal-overlay">
+        <div class="modal-content relative">
+            <button class="modal-close-button" onclick="hideContactModal()">&times;</button>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">Inquire About Service</h3>
+            <p class="text-lg text-gray-700 mb-6">You're about to send an email regarding: <span id="modal-service-name" class="font-semibold text-blue-600"></span></p>
+            <a id="modal-email-link" href="#" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-md transition-colors duration-200">Send Email</a>
         </div>
     </div>
 
     <footer class="text-center mt-8 pt-6 border-t-2 border-gray-300 text-gray-600 text-sm">
-        <p>&copy; <span id="current-year"></span> Rico Sanchez. All rights reserved.</p>
+        <p>&copy; <span id="current-year"></span> ricobs.github.io. All rights reserved.</p>
     </footer>
 
     <script>
@@ -358,6 +422,10 @@
         document.addEventListener('DOMContentLoaded', () => {
             const tabButtons = document.querySelectorAll('.tab-button');
             const tabContents = document.querySelectorAll('.tab-content');
+            const serviceItems = document.querySelectorAll('.service-item'); // Select all service items
+            const contactModalOverlay = document.getElementById('contact-modal-overlay');
+            const modalServiceName = document.getElementById('modal-service-name');
+            const modalEmailLink = document.getElementById('modal-email-link');
 
             // Function to show a specific tab
             function showTab(tabId) {
@@ -390,6 +458,7 @@
                 } else {
                     stopShuffler('certificationsShufflerInterval');
                 }
+                // No specific shuffler management needed for 'services-content' as it's merged
             }
 
             // Generic function to start an image shuffler
@@ -438,6 +507,19 @@
                 }
             }
 
+            // Function to show the contact modal
+            function showContactModal(serviceName) {
+                modalServiceName.textContent = serviceName;
+                const emailSubject = encodeURIComponent(`Inquiry about ${serviceName}`);
+                modalEmailLink.href = `mailto:rodricobs@gmail.com?subject=${emailSubject}`;
+                contactModalOverlay.classList.add('show');
+            }
+
+            // Function to hide the contact modal
+            window.hideContactModal = function() { // Made global for onclick in HTML
+                contactModalOverlay.classList.remove('show');
+            };
+
             // Add click event listeners to all tab buttons
             tabButtons.forEach(button => {
                 button.addEventListener('click', (event) => {
@@ -447,8 +529,23 @@
                 });
             });
 
-            // Set the initial active tab (About)
-            showTab('contact-content'); // 'contact-content' is now the 'About' section
+            // Add click event listeners to service items
+            serviceItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const serviceName = item.dataset.service;
+                    showContactModal(serviceName);
+                });
+            });
+
+            // Hide modal if overlay is clicked
+            contactModalOverlay.addEventListener('click', (event) => {
+                if (event.target === contactModalOverlay) {
+                    hideContactModal();
+                }
+            });
+
+            // Set the initial active tab (Main)
+            showTab('contact-content'); // 'contact-content' is now the 'Main' section
 
             // JavaScript to automatically update the copyright year
             document.getElementById('current-year').textContent = new Date().getFullYear();
