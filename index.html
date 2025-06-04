@@ -12,6 +12,8 @@
             font-family: 'Inter', sans-serif;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            background-color: #FDF8E4; /* Very light, creamy yellow - like masa or light corn */
+            color: #4B5563; /* Tailwind's gray-700, a good neutral dark for readability */
         }
         /* Specific adjustments for list item spacing if needed */
         ul li {
@@ -20,29 +22,37 @@
         /* Ensure links are styled consistently */
         a {
             text-decoration: none;
+            color: #EF4444; /* Red-500 for a chili-like accent */
         }
         a:hover {
             text-decoration: underline;
+            color: #DC2626; /* Darker red on hover */
         }
         /* Custom border for sections */
         .section-border {
-            border-bottom: 1px solid #e5e7eb; /* Tailwind's gray-200 */
+            border-bottom: 1px solid #FCD34D; /* Lighter yellow-orange */
         }
 
         /* Tab specific styles */
         .tab-button {
-            @apply px-4 py-2 text-lg font-medium text-blue-600 hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors duration-200;
+            @apply px-4 py-2 text-lg font-medium focus:outline-none focus:ring-2 focus:ring-opacity-50 transition-colors duration-200;
             background-color: transparent; /* Make background transparent for link-like appearance */
             border-radius: 0; /* Remove border-radius */
             border-bottom: 2px solid transparent; /* Add transparent bottom border for active state */
+            color: #F59E0B; /* Amber-500 for tab text */
+            transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+        }
+        .tab-button:hover {
+            color: #D97706; /* Deep golden orange on hover */
         }
         .tab-button.active {
-            @apply text-blue-800; /* Darker blue for active state */
-            border-bottom-color: #2563eb; /* Active underline color (Tailwind's blue-600) */
+            color: #D97706; /* Deep golden orange for active state */
+            border-bottom-color: #D97706; /* Active underline color (Deep golden orange) */
             font-weight: 600; /* Make active tab slightly bolder */
         }
         .tab-content {
-            @apply p-6 bg-white rounded-b-lg shadow-lg;
+            background-color: #FFFCEB; /* Even lighter cream for content cards */
+            @apply p-6 rounded-b-lg shadow-lg;
             display: none; /* Hidden by default */
         }
         .tab-content.active {
@@ -56,7 +66,6 @@
             min-height: 468.75px; /* Adjusted from 312.5px by 50% */
             overflow: hidden;
             margin-top: 1.5rem; /* Add some space above the shuffler */
-            /* Removed background-color, border-radius, and box-shadow for the container */
         }
         .shuffler-item-ref {
             position: absolute;
@@ -69,17 +78,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            /* Removed background-color for individual items */
         }
         .shuffler-item-ref.active {
             opacity: 1;
             z-index: 1; /* Bring active item to front */
-        }
-        .shuffler-item-ref.hidden-element {
-            /* This class is now primarily for initial state or if explicitly needed for display:none,
-               but for smooth transitions, opacity handles visibility.
-               Keeping it here for potential future use or if JS relies on it for non-active state. */
-            /* display: none; */ /* Removed to allow smooth transitions without gaps */
         }
         .shuffler-item-ref img {
             max-width: 90%; /* Smaller max-width to give some padding */
@@ -199,22 +201,30 @@
             cursor: pointer;
         }
         .service-item {
+            background-color: #FDF8E4; /* Light corn yellow */
+            border: 1px solid #FCD34D; /* Lighter yellow-orange border */
             @apply cursor-pointer p-3 rounded-md transition-colors duration-200;
-            background-color: #f9fafb; /* Light gray background for service items */
-            border: 1px solid #e5e7eb; /* Light border */
         }
         .service-item:hover {
-            @apply bg-blue-50; /* Light blue on hover */
-            border-color: #bfdbfe; /* Lighter blue border on hover */
+            background-color: #FEF3C7; /* Slightly darker yellow on hover */
+            border-color: #FBBF24; /* Amber-400 on hover */
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 leading-relaxed p-4 sm:p-6 md:p-8 lg:p-10 max-w-4xl mx-auto rounded-lg shadow-lg my-8">
+<body class="bg-yellow-50 text-yellow-900 leading-relaxed p-4 sm:p-6 md:p-8 lg:p-10 max-w-4xl mx-auto rounded-lg shadow-lg my-8">
 
-    <nav class="mb-6 no-print">
+    <header class="text-center mb-8 pb-6 border-b-2 border-amber-600">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-amber-800 mb-2 leading-tight whitespace-nowrap overflow-hidden text-ellipsis">ricobs.github.io - Quality Data Solutions</h1>
+    </header>
+
+    <nav class="mb-6 no-print pb-2 border-b-2 border-amber-600"> <!-- Added border-b-2 and border-amber-600 -->
         <ul class="flex flex-wrap justify-center -mb-px">
             <li class="mr-2">
-                <a id="about-tab" class="tab-button active" href="#contact-content" data-tab-target="contact-content">Main</a>
+                <a id="about-tab" class="tab-button active" href="#about-content" data-tab-target="about-content">About</a>
+            </li>
+            <li class="mr-2 flex items-center">
+                <span class="text-gray-400 text-lg mx-1">|</span>
+                <a id="services-tab" class="tab-button" href="#services-content" data-tab-target="services-content">Services</a>
             </li>
             <li class="mr-2 flex items-center">
                 <span class="text-gray-400 text-lg mx-1">|</span>
@@ -224,21 +234,33 @@
                 <span class="text-gray-400 text-lg mx-1">|</span>
                 <a id="references-tab" class="tab-button" href="#references-content" data-tab-target="references-content">References</a>
             </li>
-            <li class="flex items-center">
+            <li class="mr-2 flex items-center">
                 <span class="text-gray-400 text-lg mx-1">|</span>
                 <a id="certifications-tab" class="tab-button" href="#certifications-content" data-tab-target="certifications-content">Education</a>
+            </li>
+            <li class="flex items-center">
+                <span class="text-gray-400 text-lg mx-1">|</span>
+                <a id="contact-tab" class="tab-button" href="#contact-tab-content" data-tab-target="contact-tab-content">Contact</a>
             </li>
         </ul>
     </nav>
 
-    <header class="text-center mb-8 pb-6 border-b-2 border-blue-600">
-        <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-2 leading-tight">ricobs.github.io - Quality Data Solutions</h1>
-    </header>
-
     <div id="tab-content-area">
-        <div id="contact-content" class="tab-content active">
-            <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-gray-300 inline-block">Our Services</h2>
-            <p class="text-lg text-gray-800 mb-6">Click on any service below to inquire about it:</p>
+        <div id="about-content" class="tab-content active">
+            <h2 class="text-2xl sm:text-3xl font-bold text-amber-800 mb-4 pb-2 border-b-2 border-yellow-300 inline-block">About Us</h2>
+            <div class="text-lg text-yellow-900 space-y-4">
+                <p class="font-bold text-xl sm:text-2xl text-yellow-900 mb-4">
+                    At ricobs.github.io, we specialize in providing top-tier data solutions, leveraging robust skills in data management, process optimization, and strategic decision-making. Our proven track record includes enhancing data accuracy, streamlining workflows, and transforming complex data into actionable strategies for business growth. We combine analytic expertise from global asset management and tech education with a strong foundation in operational efficiency, ensuring comprehensive and effective solutions for our clients.
+                </p>
+                <p>
+                    Our team is dedicated to applying cutting-edge analytical techniques to solve real-world business challenges, ensuring your data works for you.
+                </p>
+            </div>
+        </div>
+
+        <div id="services-content" class="tab-content">
+            <h2 class="text-2xl sm:text-3xl font-bold text-amber-800 mb-4 pb-2 border-b-2 border-yellow-300 inline-block">Our Services</h2>
+            <p class="text-lg text-yellow-900 mb-6">Click on any service below to inquire about it:</p>
             <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 text-lg">
                 <li class="service-item" data-service="Data Analysis & Reporting">Data Analysis & Reporting</li>
                 <li class="service-item" data-service="SQL Database Optimization">SQL Database Optimization</li>
@@ -250,47 +272,38 @@
                 <li class="service-item" data-service="Data Governance Implementation">Data Governance Implementation</li>
                 <li class="service-item" data-service="Customer Segmentation">Customer Segmentation</li>
                 <li class="service-item" data-service="Stakeholder Management & Communication">Stakeholder Management & Communication</li>
+                <li class="service-item" data-service="Long Form Videography & Editing">Long Form Videography & Editing (Weddings, Graduations, Celebrations)</li>
             </ul>
-
-            <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mt-8 mb-4 pb-2 border-b-2 border-gray-300 inline-block">About Us</h2>
-            <div class="text-lg text-gray-800 space-y-4">
-                <p class="font-bold text-xl sm:text-2xl text-gray-800 mb-4">
-                    At ricobs.github.io, we specialize in providing top-tier data solutions, leveraging robust skills in data management, process optimization, and strategic decision-making. Our proven track record includes enhancing data accuracy, streamlining workflows, and transforming complex data into actionable strategies for business growth. We combine analytic expertise from global asset management and tech education with a strong foundation in operational efficiency, ensuring comprehensive and effective solutions for our clients.
-                </p>
-                <p>
-                    Our team is dedicated to applying cutting-edge analytical techniques to solve real-world business challenges, ensuring your data works for you.
-                </p>
-                </div>
         </div>
 
         <div id="resume-content" class="tab-content">
             <main class="w-full">
                 <section class="mb-8 pb-4 section-border">
-                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-gray-300 inline-block">TECHNICAL SKILLS</h2>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-amber-800 mb-4 pb-2 border-b-2 border-yellow-300 inline-block">TECHNICAL SKILLS</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-lg">
                         <div>
-                            <h3 class="font-semibold text-gray-800 mb-2">Programming:</h3>
+                            <h3 class="font-semibold text-yellow-900 mb-2">Programming:</h3>
                             <p>Python, SQL, Excel, Camtasia Studio, Adobe Creative Cloud, Power BI, AdSense, HubSpot CRM, Zoho CRM</p>
                         </div>
                         <div>
-                            <h3 class="font-semibold text-gray-800 mb-2">Frameworks:</h3>
+                            <h3 class="font-semibold text-yellow-900 mb-2">Frameworks:</h3>
                             <p>BI Tools, Matplotlib, Jupyter Notebook, GitHub, Scikit Learn, Agile Scrum, Asana, Project Management</p>
                         </div>
                         <div class="col-span-1 md:col-span-2">
-                            <h3 class="font-semibold text-gray-800 mb-2">Skills:</h3>
+                            <h3 class="font-semibold text-yellow-900 mb-2">Skills:</h3>
                             <p>Sales Operations, CRM Management, Dashboard Development, Data Governance, Storytelling, Reporting</p>
                         </div>
                     </div>
                 </section>
 
                 <section class="mb-8 pb-4 section-border">
-                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-gray-300 inline-block">ANALYTIC WORK EXPERIENCE</h2>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-amber-800 mb-4 pb-2 border-b-2 border-yellow-300 inline-block">ANALYTIC WORK EXPERIENCE</h2>
 
-                    <article class="mb-6 p-4 border-l-4 border-blue-500 bg-white shadow-sm rounded-md">
-                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900">Quality Assurance</h3>
-                        <p class="text-lg text-gray-700 mb-1">Ritchie Bros. Global | Latham NY</p>
-                        <p class="text-md text-gray-600 italic mb-3">Jan 2025 - Present</p>
-                        <ul class="list-disc list-inside text-lg text-gray-800 space-y-1">
+                    <article class="mb-6 p-4 border-l-4 border-orange-400 bg-yellow-100 shadow-sm rounded-md">
+                        <h3 class="text-xl sm:text-2xl font-bold text-amber-800">Quality Assurance</h3>
+                        <p class="text-lg text-yellow-900 mb-1">Ritchie Bros. Global | Latham NY</p>
+                        <p class="text-md text-yellow-800 italic mb-3">Jan 2025 - Present</p>
+                        <ul class="list-disc list-inside text-lg text-yellow-900 space-y-1">
                             <li>Accurately processed salvage titles, maintaining a compliant database for all vehicle sales operations nationwide.</li>
                             <li>Applied comprehensive knowledge of title and salvage law across all states to ensure total regulatory compliance.</li>
                             <li>Provided accurate responses to inquiries, consistently enhancing customer experience and satisfaction outcomes.</li>
@@ -299,11 +312,11 @@
                         </ul>
                     </article>
 
-                    <article class="mb-6 p-4 border-l-4 border-blue-500 bg-white shadow-sm rounded-md">
-                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900">Enterprise Analyst</h3>
-                        <p class="text-lg text-gray-700 mb-1">Tech Elevator | Remote</p>
-                        <p class="text-md text-gray-600 italic mb-3">2023 - Nov 2024</p>
-                        <ul class="list-disc list-inside text-lg text-gray-800 space-y-1">
+                    <article class="mb-6 p-4 border-l-4 border-orange-400 bg-yellow-100 shadow-sm rounded-md">
+                        <h3 class="text-xl sm:text-2xl font-bold text-amber-800">Enterprise Analyst</h3>
+                        <p class="text-lg text-yellow-900 mb-1">Tech Elevator | Remote</p>
+                        <p class="text-md text-yellow-800 italic mb-3">2023 - Nov 2024</p>
+                        <ul class="list-disc list-inside text-lg text-yellow-900 space-y-1">
                             <li>Designed and implemented a historical sales database, enabling the creation of custom reports for decision-making.</li>
                             <li>Designed data governance policies, created technical documentation, and introduced Master Data Management.</li>
                             <li>Constructed an enterprise go-to-market plan, ensuring a data-driven approach to marketing initiatives.</li>
@@ -314,11 +327,11 @@
                         </ul>
                     </article>
 
-                    <article class="mb-6 p-4 border-l-4 border-blue-500 bg-white shadow-sm rounded-md">
-                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900">Business Analyst</h3>
-                        <p class="text-lg text-gray-700 mb-1">Tech Elevator | Remote</p>
-                        <p class="text-md text-gray-600 italic mb-3">May 2022 - 2023</p>
-                        <ul class="list-disc list-inside text-lg text-gray-800 space-y-1">
+                    <article class="mb-6 p-4 border-l-4 border-orange-400 bg-yellow-100 shadow-sm rounded-md">
+                        <h3 class="text-xl sm:text-2xl font-bold text-amber-800">Business Analyst</h3>
+                        <p class="text-lg text-yellow-900 mb-1">Tech Elevator | Remote</p>
+                        <p class="text-md text-yellow-800 italic mb-3">May 2022 - 2023</p>
+                        <ul class="list-disc list-inside text-lg text-yellow-900 space-y-1">
                             <li>Designed and implemented SQL based automation and workflows, reducing manual labor by 25,000 hours annually.</li>
                             <li>Improved data accuracy from 60% to 98% through SQL engineering and standardized auditing processes.</li>
                             <li>Conducted in-depth market research, incorporating national demographics to inform strategic decision-making.</li>
@@ -329,24 +342,24 @@
                 </section>
 
                 <section class="mb-8 pb-4 section-border">
-                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-gray-300 inline-block">HOSPITALITY WORK EXPERIENCE</h2>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-amber-800 mb-4 pb-2 border-b-2 border-yellow-300 inline-block">HOSPITALITY WORK EXPERIENCE</h2>
 
-                    <article class="mb-6 p-4 border-l-4 border-blue-500 bg-white shadow-sm rounded-md">
-                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900">Lead Steward</h3>
-                        <p class="text-lg text-gray-700 mb-1">UnCruise Cruise Lines | Seattle, WA</p>
-                        <p class="text-md text-gray-600 italic mb-3">2018 - 2020</p>
-                        <ul class="list-disc list-inside text-lg text-gray-800 space-y-1">
+                    <article class="mb-6 p-4 border-l-4 border-orange-400 bg-yellow-100 shadow-sm rounded-md">
+                        <h3 class="text-xl sm:text-2xl font-bold text-amber-800">Lead Steward</h3>
+                        <p class="text-lg text-yellow-900 mb-1">UnCruise Cruise Lines | Seattle, WA</p>
+                        <p class="text-md text-yellow-800 italic mb-3">2018 - 2020</p>
+                        <ul class="list-disc list-inside text-lg text-yellow-900 space-y-1">
                             <li>Performed over 186 client-facing interactions per day to fulfill a variety of guest needs and requests.</li>
                             <li>Improved overall customer satisfaction from 74% to 80% following weekly independent surveys.</li>
                             <li>Coordinated unique dietary selections for 100-150 passengers and ensured a safe dining experience.</li>
                         </ul>
                     </article>
 
-                    <article class="mb-6 p-4 border-l-4 border-blue-500 bg-white shadow-sm rounded-md">
-                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900">Lead Steward</h3>
-                        <p class="text-lg text-gray-700 mb-1">American Cruise Lines | Guliford, CT</p>
-                        <p class="text-md text-gray-600 italic mb-3">2017 - 2018</p>
-                        <ul class="list-disc list-inside text-lg text-gray-800 space-y-1">
+                    <article class="mb-6 p-4 border-l-4 border-orange-400 bg-yellow-100 shadow-sm rounded-md">
+                        <h3 class="text-xl sm:text-2xl font-bold text-amber-800">Lead Steward</h3>
+                        <p class="text-lg text-yellow-900 mb-1">American Cruise Lines | Guliford, CT</p>
+                        <p class="text-md text-yellow-800 italic mb-3">2017 - 2018</p>
+                        <ul class="list-disc list-inside text-lg text-yellow-900 space-y-1">
                             <li>Led new member training procedures and reduced amount of service inaccuracies by 37.5%.</li>
                             <li>Recognized by guests and management for wonderful service, generating 6+ positive reviews weekly.</li>
                         </ul>
@@ -356,7 +369,7 @@
         </div>
 
         <div id="references-content" class="tab-content">
-            <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-gray-300 inline-block">References</h2>
+            <h2 class="text-2xl sm:text-3xl font-bold text-amber-800 mb-4 pb-2 border-b-2 border-yellow-300 inline-block">References</h2>
             <section class="mt-8">
                 <div id="references-image-shuffler" class="image-shuffler">
                     <div class="shuffler-item-ref active">
@@ -376,11 +389,11 @@
                     </div>
                 </div>
             </section>
-            <p class="text-lg text-gray-800 mb-4 mt-8">References are available upon request.</p>
+            <p class="text-lg text-yellow-900 mb-4 mt-8">References are available upon request.</p>
         </div>
 
         <div id="certifications-content" class="tab-content">
-            <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-gray-300 inline-block">Certifications & Education</h2>
+            <h2 class="text-2xl sm:text-3xl font-bold text-amber-800 mb-4 pb-2 border-b-2 border-yellow-300 inline-block">Certifications & Education</h2>
             <section class="mt-8">
                 <div id="certifications-image-shuffler" class="image-shuffler">
                     <div class="shuffler-item-ref active">
@@ -394,24 +407,33 @@
                     </div>
                 </div>
             </section>
-            <ul class="list-disc list-inside text-lg text-gray-800 space-y-2 mt-8">
+            <ul class="list-disc list-inside text-lg text-yellow-900 space-y-2 mt-8">
                 <li>Data Science & Machine Learning Graduate- BloomTech (2022)</li>
                 <li>Hubspot Reporting Certified</li>
                 <li>Camtasia Explorer Certified</li>
             </ul>
-            </div>
+        </div>
+
+        <div id="contact-tab-content" class="tab-content">
+            <h2 class="text-2xl sm:text-3xl font-bold text-amber-800 mb-4 pb-2 border-b-2 border-yellow-300 inline-block">Contact Us</h2>
+            <p class="text-lg text-yellow-900 space-y-4">
+                For inquiries, collaborations, or to learn more about our services, please feel free to reach out to us:
+            </p>
+            <p><strong>Email:</strong> <a href="mailto:rodricobs@gmail.com" class="text-red-600 hover:text-red-700">rodricobs@gmail.com</a></p>
+            <p>We look forward to hearing from you!</p>
+        </div>
     </div>
 
     <div id="contact-modal-overlay" class="modal-overlay">
         <div class="modal-content relative">
             <button class="modal-close-button" onclick="hideContactModal()">&times;</button>
-            <h3 class="text-2xl font-bold text-gray-900 mb-4">Inquire About Service</h3>
-            <p class="text-lg text-gray-700 mb-6">You're about to send an email regarding: <span id="modal-service-name" class="font-semibold text-blue-600"></span></p>
-            <a id="modal-email-link" href="#" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-md transition-colors duration-200">Send Email</a>
+            <h3 class="text-2xl font-bold text-amber-800 mb-4">Inquire About Service</h3>
+            <p class="text-lg text-yellow-900 mb-6">You're about to send an email regarding: <span id="modal-service-name" class="font-semibold text-orange-600"></span></p>
+            <a id="modal-email-link" href="#" class="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-md transition-colors duration-200">Send Email</a>
         </div>
     </div>
 
-    <footer class="text-center mt-8 pt-6 border-t-2 border-gray-300 text-gray-600 text-sm">
+    <footer class="text-center mt-8 pt-6 border-t-2 border-yellow-300 text-yellow-800 text-sm">
         <p>&copy; <span id="current-year"></span> ricobs.github.io. All rights reserved.</p>
     </footer>
 
@@ -458,7 +480,6 @@
                 } else {
                     stopShuffler('certificationsShufflerInterval');
                 }
-                // No specific shuffler management needed for 'services-content' as it's merged
             }
 
             // Generic function to start an image shuffler
@@ -544,8 +565,8 @@
                 }
             });
 
-            // Set the initial active tab (Main)
-            showTab('contact-content'); // 'contact-content' is now the 'Main' section
+            // Set the initial active tab (About)
+            showTab('about-content'); // 'about-content' is now the 'About' section
 
             // JavaScript to automatically update the copyright year
             document.getElementById('current-year').textContent = new Date().getFullYear();
